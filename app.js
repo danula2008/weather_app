@@ -24,3 +24,5 @@ for (let i = 0; i < 24; i++) {
 }
 
 document.getElementById("hourly_forcast_grid").innerHTML = code_hourly_forcast;
+
+document.getElementById('datePicker').value = new Date().toISOString().slice(0, 10);
