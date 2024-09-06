@@ -63,25 +63,25 @@
     <div class="d-flex justify-content-center align-items-center h-100">
         <div class="container mt-5 rounded-2 bg-black bg-opacity-50 p-3 row drop-shadow border-gray px-lg-5">
             <div class="col-12 col-md-6 d-flex flex-column">
-                <h2 class="fw-semibold" style="font-size: 35px;">London, United Kingdom</h2>
+                <h2 class="fw-semibold" style="font-size: 35px;" id="name_region"></h2>
                 <div class="d-md-flex fw-medium">
-                    <h6 class="fs-15">Latitude: 51.52° N</h6>
+                    <h6 class="fs-15" id="latitude"></h6>
                     <h6 class="d-none d-md-block fs-15
                     ">&nbsp;&nbsp;|&nbsp;&nbsp;</h6>
-                    <h6 class="fs-15">Longitude: 0.11° W</h6>
+                    <h6 class="fs-15" id="longitude"></h6>
                 </div>
                 <div class="d-md-flex align-items-center">
-                    <h1 style="font-size: 80px; color: #FFA34E;" class="fw-bold">9.5°C</h1>
-                    <h4 class="ms-md-3 mt-md-5 fw-medium fs-25">Overcast</h4>
+                    <h1 style="font-size: 80px; color: #FFA34E;" class="fw-bold" id="temp"></h1>
+                    <h4 class="ms-md-3 mt-md-5 fw-medium fs-25" id="condition_txt"></h4>
                 </div>
             </div>
 
             <div class="col-12 col-md-6 d-flex flex-column justify-content-md-center align-items-md-end">
-                <h6 class="fw-medium fs-15">Last update: 2021-02-21 08:30</h6>
-                <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="Partly cloudy" height="75px"
-                    width="75px">
-                <h3 class="fs-25">Cloud : 75%</h3>
-                <h3 class="fs-25">Wind direction : SW</h3>
+                <h6 class="fw-medium fs-15" id="last_updated"></h6>
+                <img src="" alt="Partly cloudy" height="75px"
+                    width="75px" id="condition_icon">
+                <h3 class="fs-25" id="cloud"></h3>
+                <h3 class="fs-25" id="wind_dir"></h3>
             </div>
         </div>
     </div>
