@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,23 +26,20 @@
 
 
     <div class="container d-flex mt-4 justify-content-center gap-2 w-100">
-
         <div class="d-flex align-items-center bg-opacity-40 rounded-2 bg-black bg-opacity border-gray w-50">
             <img src="Assets/world_location.png" alt="location" width="30" height="30" class="mx-2">
             <input type="text" placeholder="Enter a City or Country" id="txtSearch"
                 class="form-control bg-black bg-opacity border-gray border-end-0 border-top-0 border-bottom-0 rounded-start-0 text-white">
         </div>
-
         <div
             class="text-center d-flex align-items-center rounded-2 justify-content-center bg-opacity bg-black border-gray px-3">
             <button class="bg-black bg-opacity border-0" id="btnSearch" onclick="btnSearchOnAction()">
                 <img src="Assets/icons8-search-100.png" alt="search" width="30" height="30">
             </button>
         </div>
-
     </div>
 
-    <div class="d-flex justify-content-center align-items-center h-100">
+    <div data-aos="fade-up" class="d-flex justify-content-center align-items-center h-100">
         <div class="container mt-5 rounded-2 bg-black bg-opacity p-3 row drop-shadow border-gray px-lg-5">
             <div class="col-12 col-md-6 d-flex flex-column">
                 <h2 class="fw-semibold" style="font-size: 35px;" id="name_region"></h2>
@@ -68,7 +66,7 @@
 
     <div class="container mt-5">
         <div class="row gap-5">
-            <div class="col-12 col-md-5 fs-25 fw-semibold">
+            <div data-aos="fade-up-right" class="col-12 col-md-5 fs-25 fw-semibold">
                 Current Weather
                 <div
                     class="mt-2 bg-black bg-opacity p-3 rounded-2 h-100 d-flex justify-content-center align-items-center drop-shadow border-gray">
@@ -78,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 fs-25 mt-5 mt-md-0 fw-semibold">
+            <div data-aos="fade-up-left" class="col-12 col-md-6 fs-25 mt-5 mt-md-0 fw-semibold">
                 Hourly Forecast
                 <div
                     class="mt-2 bg-black bg-opacity p-3 rounded-2 h-100 d-flex justify-content-center align-items-center drop-shadow border-gray">
@@ -93,21 +91,23 @@
 
     <div class="container mt-5 pt-5">
         <div class="row">
-            <div class="col-lg-6 col-md-12 p-4 bg-black bg-opacity rounded-2 drop-shadow border-gray">
+            <div data-aos="fade-right"
+                class="col-lg-6 col-md-12 p-4 bg-black bg-opacity rounded-2 drop-shadow border-gray">
                 <h4 class="text-center text-white">Rainfall Chart</h4>
                 <canvas id="rainfallChart"></canvas>
             </div>
-            <div class="col-lg-6 col-md-12 p-4 bg-black bg-opacity rounded-2 drop-shadow border-gray">
+            <div data-aos="fade-left"
+                class="col-lg-6 col-md-12 p-4 bg-black bg-opacity rounded-2 drop-shadow border-gray">
                 <h4 class="text-center text-white">Temperature Chart</h4>
                 <canvas id="temperatureChart"></canvas>
             </div>
         </div>
     </div>
 
-    <div
+    <div data-aos="zoom-in-up"
         class="container mt-5 bg-black bg-opacity p-3 rounded-2 h-100 d-flex justify-content-center align-items-center drop-shadow border-gray">
         <div class="row w-100" id="astro_details_grid">
-            <!-- Dynamic Code Inserted From app.js -->                
+            <!-- Dynamic Code Inserted From app.js -->
         </div>
     </div>
 
@@ -145,6 +145,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
     <script src="app.js"></script>
 </body>
 
