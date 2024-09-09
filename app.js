@@ -2,7 +2,7 @@ getDataFromApi("sri-jayawardanapura-kotte");
 
 async function getDataFromApi(location) {
   fetch(
-    // `https://api.weatherapi.com/v1/forecast.json?q=${location}&key=ead3f37c992946bb943145314240609`
+    `https://api.weatherapi.com/v1/forecast.json?q=${location}&key=ead3f37c992946bb943145314240609`
   )
     .then((response) => response.json())
     .then((data) => {
