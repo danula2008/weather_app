@@ -13,55 +13,36 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-
-    <style>
-        .drop-shadow {
-            box-shadow: 0 0 10px rgba(125, 120, 120, 0.8);
-        }
-
-        .border-gray{
-            border: 2px solid rgba(125, 120, 120, 0.7);
-        }
-
-        .work-sans-font {
-            font-family: "Work Sans", sans-serif;
-        }
-
-        .fs-25 {
-            font-size: 25px;
-        }
-
-        .fs-15 {
-            font-size: 15px;
-        }
-    </style>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="background-color: #002254;" class="text-white work-sans-font">
+<body class="text-white work-sans-font">
 
-    <div class="container d-flex mt-4 justify-content-center gap-2 gap-sm-3 gap-md-3 gap-lg-5">
-        <div class="d-flex align-items-center bg-opacity-40 rounded-2 bg-black bg-opacity-50 border-gray w-100">
+    <video autoplay muted loop id="background-video" class="position-fixed w-100 h-100 start-0 top-0"
+        style="z-index: -1; object-fit: cover;">
+        <source src="Assets/earth.mp4" type="video/mp4">
+    </video>
+
+
+    <div class="container d-flex mt-4 justify-content-center gap-2 w-100">
+
+        <div class="d-flex align-items-center bg-opacity-40 rounded-2 bg-black bg-opacity border-gray w-50">
             <img src="Assets/world_location.png" alt="location" width="30" height="30" class="mx-2">
-            <input type="text" class="form-control bg-black bg-opacity-50 border-gray border-end-0 border-top-0 border-bottom-0 rounded-start-0 text-white">
+            <input type="text" placeholder="Enter a City or Country" id="txtSearch"
+                class="form-control bg-black bg-opacity border-gray border-end-0 border-top-0 border-bottom-0 rounded-start-0 text-white">
         </div>
 
-        <div class="text-center w-25">
-            <button class="d-flex align-items-center rounded-2 justify-content-center bg-opacity-50 bg-black border-gray w-100"
-                style="height: 40px;">
+        <div
+            class="text-center d-flex align-items-center rounded-2 justify-content-center bg-opacity bg-black border-gray px-3">
+            <button class="bg-black bg-opacity border-0">
                 <img src="Assets/icons8-search-100.png" alt="search" width="30" height="30">
             </button>
         </div>
 
-        <div class="d-flex align-items-center bg-opacity-40 rounded-2 bg-black bg-opacity-50 border-gray w-100">
-            <input type="date" id="datePicker" class="form-control bg-black bg-opacity-50 border-gray border-start-0 border-top-0 border-bottom-0 rounded-end-0 text-white text-end">
-            <img src="Assets/icons8-date-100.png" alt="date" width="25" height="25" class="mx-2">
-        </div>
-        
     </div>
 
     <div class="d-flex justify-content-center align-items-center h-100">
-        <div class="container mt-5 rounded-2 bg-black bg-opacity-50 p-3 row drop-shadow border-gray px-lg-5">
+        <div class="container mt-5 rounded-2 bg-black bg-opacity p-3 row drop-shadow border-gray px-lg-5">
             <div class="col-12 col-md-6 d-flex flex-column">
                 <h2 class="fw-semibold" style="font-size: 35px;" id="name_region"></h2>
                 <div class="d-md-flex fw-medium">
@@ -78,8 +59,7 @@
 
             <div class="col-12 col-md-6 d-flex flex-column justify-content-md-center align-items-md-end">
                 <h6 class="fw-medium fs-15" id="last_updated"></h6>
-                <img src="" alt="Partly cloudy" height="75px"
-                    width="75px" id="condition_icon">
+                <img src="" alt="Partly cloudy" height="75px" width="75px" id="condition_icon">
                 <h3 class="fs-25" id="cloud"></h3>
                 <h3 class="fs-25" id="wind_dir"></h3>
             </div>
@@ -89,9 +69,9 @@
     <div class="container mt-5">
         <div class="row gap-5">
             <div class="col-12 col-md-5 fs-25 fw-semibold">
-                Weather Details
+                Current Weather
                 <div
-                    class="mt-2 bg-black bg-opacity-50 p-3 rounded-2 h-100 d-flex justify-content-center align-items-center drop-shadow border-gray">
+                    class="mt-2 bg-black bg-opacity p-3 rounded-2 h-100 d-flex justify-content-center align-items-center drop-shadow border-gray">
                     <div class="row row-cols-sm-3 row-cols-2 row-cols-md-2 row-cols-lg-3 g-3 text-center h-100"
                         id="weather_details_grid">
                         <!-- Dynamic Code Inserted From app.js -->
@@ -101,7 +81,7 @@
             <div class="col-12 col-md-6 fs-25 mt-5 mt-md-0 fw-semibold">
                 Hourly Forecast
                 <div
-                    class="mt-2 bg-black bg-opacity-50 p-3 rounded-2 h-100 d-flex justify-content-center align-items-center drop-shadow border-gray">
+                    class="mt-2 bg-black bg-opacity p-3 rounded-2 h-100 d-flex justify-content-center align-items-center drop-shadow border-gray">
                     <div class="row row-cols-4 row-cols-md-4 row-cols-lg-6 text-center h-100" id="hourly_forcast_grid">
                         <!-- Dynamic Code Inserted From app.js -->
                     </div>
@@ -113,30 +93,36 @@
 
     <div class="container mt-5 pt-5">
         <div class="row">
-            <div class="col-lg-6 col-md-12 p-4 bg-black bg-opacity-50 rounded-2 drop-shadow border-gray">
+            <div class="col-lg-6 col-md-12 p-4 bg-black bg-opacity rounded-2 drop-shadow border-gray">
                 <h4 class="text-center text-white">Rainfall Chart</h4>
                 <canvas id="rainfallChart"></canvas>
             </div>
-            <div class="col-lg-6 col-md-12 p-4 bg-black bg-opacity-50 rounded-2 drop-shadow border-gray">
+            <div class="col-lg-6 col-md-12 p-4 bg-black bg-opacity rounded-2 drop-shadow border-gray">
                 <h4 class="text-center text-white">Temperature Chart</h4>
                 <canvas id="temperatureChart"></canvas>
             </div>
         </div>
     </div>
-  
 
+    <div
+        class="container mt-5 bg-black bg-opacity p-3 rounded-2 h-100 d-flex justify-content-center align-items-center drop-shadow border-gray">
+        <div class="row w-100" id="astro_details_grid">
+            <!-- Dynamic Code Inserted From app.js -->                
+        </div>
+    </div>
 
 
     <div class="mt-5">
-        <div class="bg-black bg-opacity-50 py-4 drop-shadow border-gray border-bottom-0 border-start-0 border-end-0" style="color: #7D7878;">
+        <div class="bg-black bg-opacity py-4 drop-shadow border-gray border-bottom-0 border-start-0 border-end-0"
+            style="color: #7D7878;">
             <div class="container">
                 <div class="row text-center text-md-start mx-lg-5">
                     <div
                         class="col-lg-6 d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-lg-start mb-3 mb-md-0">
                         <h6 class="mb-2 mb-md-0 me-3 fs-18">Developed By Danula Rathnayaka</h6>
                         <div class="d-block d-md-inline">
-                            <a href="https://www.linkedin.com/in/danularathnayaka" target="_blank" rel="noopener noreferrer"
-                                class="me-2 text-decoration-none">
+                            <a href="https://www.linkedin.com/in/danularathnayaka" target="_blank"
+                                rel="noopener noreferrer" class="me-2 text-decoration-none">
                                 <img src="Assets/icons8-linked-in-100.png" alt="LinkedIn" height="40px">
                             </a>
                             <a href="https://github.com/danula2008" target="_blank" rel="noopener noreferrer">
@@ -160,7 +146,6 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="app.js"></script>
-    <script src="charts.js"></script>
 </body>
 
 </html>
