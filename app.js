@@ -2,13 +2,13 @@ getDataFromApi("sri-jayawardanapura-kotte");
 
 async function getDataFromApi(location) {
   fetch(
-    `https://api.weatherapi.com/v1/forecast.json?q=${location}&key=ead3f37c992946bb943145314240609`
+    // `https://api.weatherapi.com/v1/forecast.json?q=${location}&key=ead3f37c992946bb943145314240609`
   )
     .then((response) => response.json())
     .then((data) => {
       try {
         if (data.error.message === "No matching location found.") {
-          alert(`We couldn't find a location matching for "${location}". Please check the spelling or try a different location.`)
+          alert(`We couldn't find a location matching for "${location}". Please check the spelling or try a different City or a Country.`)
         }
       } catch {
         setLocation(data.location);
@@ -85,7 +85,7 @@ function setAstroDetails(data) {
   for (let i = 0; i < headings.length; i++) {
     code_astro_details += `
     <div class="col-6 col-md-4 col-lg-2 mt-lg-0 mt-sm-2 mt-3">
-        <div class="w-100 d-flex flex-column align-items-center bg-black p-3 rounded-2 py-4">
+        <div class="w-100 d-flex flex-column align-items-center bg-black p-3 rounded-2 py-4 text-center h-100">
             <p style="color: #7D7878; font-size: 15px;">${headings[i]}</p>
             <h6 style="${
               headings[i] === "Moon Phase"
