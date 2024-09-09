@@ -1,16 +1,21 @@
-getDataFromApi();
+getDataFromApi("sri-jayawardanapura-kotte");
 
-async function getDataFromApi() {
+async function getDataFromApi(location) {
   fetch(
-    "https://api.weatherapi.com/v1/forecast.json?q=rajanganaya&key=ead3f37c992946bb943145314240609"
+    `https://api.weatherapi.com/v1/forecast.json?q=${location}&key=ead3f37c992946bb943145314240609`
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      setLocation(data.location);
-      setData(data.current);
-      setAstroDetails(data.forecast.forecastday[0].astro);
-      setForcast(data.forecast.forecastday[0].hour);
+      try {
+        if (data.error.message === "No matching location found.") {
+          alert(`We couldn't find a location matching for "${location}". Please check the spelling or try a different location.`)
+        }
+      } catch {
+        setLocation(data.location);
+        setData(data.current);
+        setAstroDetails(data.forecast.forecastday[0].astro);
+        setForcast(data.forecast.forecastday[0].hour);
+      }
     })
     .catch((error) => console.error("Error:", error));
 }
@@ -86,7 +91,9 @@ function setAstroDetails(data) {
               headings[i] === "Moon Phase"
                 ? "font-size: 15px;"
                 : "font-size: 25px;"
-            }">${headings[i] === "Moon Light" ? values[i] + '%' : values[i]}</h6>
+            }">${
+      headings[i] === "Moon Light" ? values[i] + "%" : values[i]
+    }</h6>
         </div>
     </div>`;
   }
@@ -172,18 +179,15 @@ function createChart(rainData, trueTemp, feelTemp, timeStamps) {
 
   const verticalhoverLine = {
     id: "verticalhoverLine",
-    beforeDatasetsDraw(chart, args, plugins) {
+    beforeDatasetsDraw(chart) {
       const {
         ctx,
         chartArea: { top, bottom },
       } = chart;
-
       ctx.save();
 
-      // Loop through all datasets to check for active data points
       chart.getDatasetMeta(0).data.forEach((dataPoint) => {
-        if (dataPoint.active === true) {
-          // Draw the vertical line at the active data point's x position
+        if (dataPoint.active) {
           ctx.beginPath();
           ctx.strokeStyle = "gray";
           ctx.moveTo(dataPoint.x, top);
@@ -196,7 +200,10 @@ function createChart(rainData, trueTemp, feelTemp, timeStamps) {
     },
   };
 
-  new Chart(document.getElementById("rainfallChart"), {
+  if (window.rainChart) window.rainChart.destroy();
+  if (window.tempChart) window.tempChart.destroy();
+
+  window.rainChart = new Chart(document.getElementById("rainfallChart"), {
     type: "line",
     data: rainChartProperties,
     options: {
@@ -213,7 +220,7 @@ function createChart(rainData, trueTemp, feelTemp, timeStamps) {
     plugins: [verticalhoverLine],
   });
 
-  new Chart(document.getElementById("temperatureChart"), {
+  window.tempChart = new Chart(document.getElementById("temperatureChart"), {
     type: "line",
     data: tempChartProperties,
     options: {
@@ -229,4 +236,9 @@ function createChart(rainData, trueTemp, feelTemp, timeStamps) {
     },
     plugins: [verticalhoverLine],
   });
+}
+
+function btnSearchOnAction() {
+  const searchText = document.getElementById("txtSearch").value;
+  getDataFromApi(searchText.toLowerCase().replace("/s+/g", "-"));
 }
