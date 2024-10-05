@@ -6,9 +6,14 @@ async function getDataFromApi(location) {
   )
     .then((response) => response.json())
     .then((data) => {
+      document.getElementById("loader").classList.add("d-none");
+      document.getElementById("elements").classList.remove("d-none");
+
       try {
         if (data.error.message === "No matching location found.") {
-          alert(`We couldn't find a location matching for "${location}". Please check the spelling or try a different City or a Country.`)
+          alert(
+            `We couldn't find a location matching for "${location}". Please check the spelling or try a different City or a Country.`
+          );
         }
       } catch {
         setLocation(data.location);
@@ -240,5 +245,15 @@ function createChart(rainData, trueTemp, feelTemp, timeStamps) {
 
 function btnSearchOnAction() {
   const searchText = document.getElementById("txtSearch").value;
+
+  document.getElementById("loader").classList.remove("d-none");
+  document.getElementById("elements").classList.add("d-none");
+
   getDataFromApi(searchText.toLowerCase().replace("/s+/g", "-"));
 }
+
+document.getElementById("txtSearch").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    btnSearchOnAction();
+  }
+});
